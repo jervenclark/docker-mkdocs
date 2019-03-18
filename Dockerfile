@@ -9,3 +9,11 @@ RUN  if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
   if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
   pip3 install --upgrade pip setuptools mkdocs
 RUN rm -r /root/.cache
+
+RUN mkdir /project
+
+COPY ./entrypoint.sh /
+
+EXPOSE 8000
+
+ENTRYPOINT ["/entrypoint.sh"]
